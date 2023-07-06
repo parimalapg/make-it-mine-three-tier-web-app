@@ -105,7 +105,7 @@ resource "google_redis_instance" "main" {
   redis_version           = "REDIS_6_X"
   region                  = var.region
   reserved_ip_range       = "10.137.125.88/29"
-  tier                    = "BASIC"
+  tier                    = "STANDARD"
   transit_encryption_mode = "DISABLED"
   labels                  = var.labels
 }
