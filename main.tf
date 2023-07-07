@@ -96,7 +96,7 @@ resource "google_vpc_access_connector" "main" {
 # Handle redis instance
 resource "google_redis_instance" "main" {
   authorized_network      = google_compute_network.main.name
-  connect_mode            = "DIRECT_PEERING"
+  connect_mode            = "PRIVATE_SERVICE_ACCESS" # Modified from "DIRECT_PEERING"
   location_id             = var.zone
   memory_size_gb          = 1
   name                    = "${var.deployment_name}-cache"
@@ -105,7 +105,7 @@ resource "google_redis_instance" "main" {
   redis_version           = "REDIS_6_X"
   region                  = var.region
   reserved_ip_range       = "10.137.125.88/29"
-  tier                    = "STANDARD_HA"
+  tier                    = "STANDARD_HA" # Modified from "BASIC"
   transit_encryption_mode = "DISABLED"
   labels                  = var.labels
 }
