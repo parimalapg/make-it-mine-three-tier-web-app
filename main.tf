@@ -19,7 +19,7 @@ data "google_project" "project" {
 }
 
 locals {
-  api_image = "gcr.io/sic-container-repo/todo-api-postgres:latest"
+  api_image = "gcr.io/sic-container-repo/todo-api-postgres:dev" # use dev tag instead of latest
   fe_image  = "gcr.io/sic-container-repo/todo-fe"
 }
 
