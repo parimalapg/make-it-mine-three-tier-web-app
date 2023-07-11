@@ -96,9 +96,9 @@ resource "google_vpc_access_connector" "main" {
 # Handle redis instance
 resource "google_redis_instance" "main" {
   authorized_network      = google_compute_network.main.name
-  connect_mode            = "PRIVATE_SERVICE_ACCESS" # Modified from "DIRECT_PEERING"
+  connect_mode            = "DIRECT_PEERING" # "PRIVATE_SERVICE_ACCESS" # Modified from "DIRECT_PEERING"
   location_id             = var.zone
-  memory_size_gb          = 1
+  memory_size_gb          = 2 # increased from 1
   name                    = "${var.deployment_name}-cache"
   display_name            = "${var.deployment_name}-cache"
   project                 = var.project_id
