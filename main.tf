@@ -19,7 +19,7 @@ data "google_project" "project" {
 }
 
 locals {
-  api_image = "gcr.io/solutionscatalogtesting-375711/todo-api-postgres:dev" # "gcr.io/sic-container-repo/todo-api-postgres:latest"
+  api_image = "gcr.io/solutionscatalogtesting-375711/todo-api-postgres:COMMIT_SHA"
   fe_image  = "gcr.io/sic-container-repo/todo-fe"
 }
 
