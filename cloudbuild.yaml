@@ -6,5 +6,6 @@ steps:
   - '-c'
   - |
     set -x && \
+    chmod +x deployment.sh && \
     export PROJECT_ID && \
     ./deployment.sh
