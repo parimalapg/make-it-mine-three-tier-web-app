@@ -6,6 +6,9 @@ steps:
   - '-c'
   - |
     set -x && \
+    apt-get install jq && \
     chmod +x deployment.sh && \
     export PROJECT_ID && \
+    echo $PROJECT_ID && \
+    export DEPLOYMENT_ID="label-testing" && \
     ./deployment.sh
