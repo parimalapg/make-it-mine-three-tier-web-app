@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
+# check variables
+echo "Project: $PROJECT_ID"
+echo "Deployment: $DEPLOYMENT_ID"
+
 #ToDo - Find a way to get these env variables.
 # One way could be to make list call(for all locations?) with label filtering, filter=labels.goog-solutions-console-solution-id=\"three-tier-web-app\
 REGION="us-central1"
 ZONE="us-central1-a"
+
+# installing jq
+apt-get install jq
 
 # updating deployment
 curl \
