@@ -7,6 +7,6 @@ steps:
   - |
     set -x && \
     chmod +x deployment.sh && \
-    echo $PROJECT_ID && \
     export DEPLOYMENT_ID="label-testing" && \
-    export PROJECT_ID && ./deployment.sh
+    export PROJECT_ID="$PROJECT_ID" && \
+    ./deployment.sh
