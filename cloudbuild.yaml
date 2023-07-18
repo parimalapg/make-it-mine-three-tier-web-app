@@ -1,0 +1,12 @@
+steps:
+# This step copies deployment script and runs it
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - |
+    set -x && \
+    cp ./deployment.sh . && \
+    chmod +x deployment.sh && \
+    export PROJECT_ID && \
+    ./deployment.sh
