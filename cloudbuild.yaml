@@ -1,7 +1,7 @@
 steps:
 # This step copies deployment script and runs it
 - name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: bash
+  entrypoint: /bin/bash
   args:
   - '-c'
   - |
