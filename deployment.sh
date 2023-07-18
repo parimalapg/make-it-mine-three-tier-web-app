@@ -2,11 +2,9 @@
 
 # check variables
 echo "Project: $PROJECT_ID"
-#ToDo: Figure out why PROJECT_ID is not exported
-PROJECT_ID=${PROJECT_ID:-"solutionscatalogtesting-375711"}
 echo "Deployment: $DEPLOYMENT_ID"
 
-#ToDo - Find a way to get these env variables.
+#ToDo - Find a way to get these values.
 # One way could be to make list call(for all locations?) with label filtering, filter=labels.goog-solutions-console-solution-id=\"three-tier-web-app\
 REGION="us-central1"
 ZONE="us-central1-a"
