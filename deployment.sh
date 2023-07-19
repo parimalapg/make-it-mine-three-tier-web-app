@@ -27,7 +27,8 @@ iam_roles_list=(
 service_account=$(curl\
        -H "Authorization: Bearer $(gcloud auth print-access-token)"\
        -H "Content-Type: application/json"\
-       "https://config.googleapis.com/v1alpha2/projects/${PROJECT_ID}/locations/${REGION}/deployments/${DEPLOYMENT_ID}" | grep -oP '(?<="serviceAccount": ")[^"]*')
+       "https://config.googleapis.com/v1alpha2/projects/${PROJECT_ID}/locations/${REGION}/deployments/${DEPLOYMENT_ID}" | \
+       grep -oP '(?<="serviceAccount": ")[^"]*' | grep -oP '(?<=serviceAccounts/).*')
 # Assigning permissions to SA
 for iam_role in ${iam_roles_list[@]}; do
   gcloud projects add-iam-policy-binding "$PROJECT_ID" \
