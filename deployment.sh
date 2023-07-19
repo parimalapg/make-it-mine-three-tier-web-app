@@ -31,7 +31,7 @@ service_account=$(curl\
 # Assigning permissions to SA
 for iam_role in ${iam_roles_list[@]}; do
   gcloud projects add-iam-policy-binding "$PROJECT_ID" \
-   --member="$service_account" \
+   --member="serviceAccount:$service_account" \
    --role="$iam_role"
 done
 # updating deployment
