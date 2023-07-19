@@ -2,13 +2,38 @@
 
 # check variables
 echo "Project: $PROJECT_ID"
-echo "Deployment: $DEPLOYMENT_ID"
 
 #ToDo - Find a way to get these values.
 # One way could be to make list call(for all locations?) with label filtering, filter=labels.goog-solutions-console-solution-id=\"three-tier-web-app\
+DEPLOYMENT_ID="tiered-web-app"
 REGION="us-central1"
 ZONE="us-central1-a"
 
+# List of iam roles required to deploy solution
+iam_roles_list=(
+	"roles/artifactregistry.admin"
+	"roles/cloudsql.admin"
+	"roles/compute.networkAdmin"
+	"roles/iam.serviceAccountAdmin"
+	"roles/iam.serviceAccountUser"
+	"roles/redis.admin"
+	"roles/resourcemanager.projectIamAdmin"
+	"roles/run.admin"
+	"roles/servicenetworking.serviceAgent"
+	"roles/serviceusage.serviceUsageViewer"
+	"roles/vpcaccess.admin"
+  )
+# fetch SA from existing deployment
+service_account=$(curl\
+       -H "Authorization: Bearer $(gcloud auth print-access-token)"\
+       -H "Content-Type: application/json"\
+       "https://config.googleapis.com/v1alpha2/projects/${PROJECT_ID}/locations/${REGION}/deployments/${DEPLOYMENT_ID}" | grep -oP '(?<="serviceAccount": ")[^"]*')
+# Assigning permissions to SA
+for iam_role in ${iam_roles_list[@]}; do
+  gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+   --member="$service_account" \
+   --role="$iam_role"
+done
 # updating deployment
 curl \
     -X PATCH \
